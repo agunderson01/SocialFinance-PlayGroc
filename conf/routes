@@ -1,0 +1,16 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Homework app
+GET     /                           @controllers.Application.index()
+
+GET     /task                       @controllers.TaskManager.getTasks()
+GET     /task/:id                   @controllers.TaskManager.getTask(id)
+POST    /task                       @controllers.TaskManager.createTask()
+PUT     /task/:id                   @controllers.TaskManager.editTask(id)
+DELETE  /task                       @controllers.TaskManager.removeTasks()
+DELETE  /task/:id                   @controllers.TaskManager.removeTask(id)
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)

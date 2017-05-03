@@ -1,0 +1,37 @@
+@(message: String, taskForm: Form[Task], tasks: List[Task])
+@implicitFieldConstructor = @{ helper.FieldConstructor(twitterBootstrapInput.render) }
+
+@main("Welcome to Your Grocery Store List") {
+
+<nav class="navbar navbar-full navbar-dark bg-inverse">
+    <a class="navbar-brand" href="#">@message</a>
+    <ul class="nav navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+        </li>
+    </ul>
+</nav>
+
+<div class="container whatever">
+    <!-- Tasks -->
+    <div class="list-group" id="task_list">
+    @for(p <- tasks) {
+        <div class="list-group-item">
+            <a href="#" id="@p.getId()" onclick="ToggleEdit(this)">@p.getTitle()
+            </a>
+            <button type="button" onclick="DeleteTask(this)" class="close" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
+        </div>
+    <!-- Submit bar -->
+    <div class="input-group whatever">
+        <input type="text" id="create-task" class="form-control" placeholder="Enter something you need at grocery store here...">
+        <span class="input-group-btn">
+            <button class="btn btn-secondary" type="button" onclick="CreateTask()">Submit!</button>
+        </span>
+    </div>
+</div>
+}
+

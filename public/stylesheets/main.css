@@ -1,0 +1,17 @@
+/*body {
+    padding-top: 50px;
+}*/
+
+.whatever {
+    margin-top: 1rem;
+}
+
+html,
+body {
+  height: 100%;
+  background-repeat:no-repeat;
+  background-size:cover;
+  background-position:center;
+  background-image: url("/assets/images/space.png");
+  background-color: #222;
+}

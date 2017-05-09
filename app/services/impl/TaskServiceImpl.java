@@ -13,17 +13,20 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Service
-public class TaskServiceImpl implements TaskService{
+public class TaskServiceImpl implements TaskService {
 
     private static final Logger logger = LoggerFactory.getLogger(TaskServiceImpl.class);
 
     @PersistenceContext
-    EntityManager em;
+    private EntityManager em;
 
+    @Override
     public List<Task> getTasks() {
-        TypedQuery<Task> query = em.createQuery("SELECT t FROM Task t", Task.class);
-        List<Task> results = query.getResultList();
-        logger.info("Found " + results.size() + " tasks.");
+        // TypedQuery<Task> query = em.createQuery("SELECT t FROM Task t", Task.class);
+        // List<Task> results = query.getResultList();
+        List<Task> results = em.createQuery("SELECT t FROM Task t", Task.class)
+                        .getResultList();
+        logger.info("Found {} tasks.", results.size());
         return results;
     }
 
@@ -39,7 +42,7 @@ public class TaskServiceImpl implements TaskService{
             Task t = getTask(id_l);
             return t;
         } catch (NumberFormatException ex) {
-            return null;
+            return null;  // why  do in controller instead
         }
     }
 

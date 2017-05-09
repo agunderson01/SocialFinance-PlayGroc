@@ -38,7 +38,7 @@ public class TaskManager extends Controller {
 
         Task task = form.get();
         task = taskService.saveTask(task);
-        logger.info("New task returned with id " + task.getId());
+        logger.info("New task returned with id {}", task.getId());
         return ok(Json.toJson(task.getId()));
     }
 

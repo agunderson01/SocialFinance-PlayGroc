@@ -9,14 +9,44 @@ import java.time.LocalDate;
 public class Task {
     @Id
     @GeneratedValue
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Required
+    @Column(name = "title")
     private String title;
 
+    @Column(name = "comment")
     private String comment;
 
+    @Column(name = "starred")
     private boolean starred;
+
+    @Column(name = "due_date")
+    private LocalDate dueDate;
+
+    // -------- Default constructor needed by Hibernate --------
+
+    public Task() {
+    }
+
+    // --------- Getters/Setters ---------
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public LocalDate getDueDate() {
         return dueDate;
@@ -40,23 +70,5 @@ public class Task {
 
     public void setStarred(boolean starred) {
         this.starred = starred;
-    }
-
-    private LocalDate dueDate;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
     }
 }

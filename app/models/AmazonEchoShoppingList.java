@@ -9,32 +9,44 @@ import javax.persistence.*;
 public class AmazonEchoShoppingList {
     @Id
     @GeneratedValue
-    private long id;
+    @Column(name = "id")
+    private Long id;
 
     @Required
-    private long pullRequestId;
+    @Column(name = "pull_request_id")
+    private Long pullRequestId;
 
     @Required
+    @Column(name = "username")
     private String userName;
 
     @Required
+    @Column(name = "shopping_list_item")
     private String shoppingListItem;
 
+    @Column(name = "comment")
     private String comment;
 
-    public long getId() {
+    // -------- Default constructor needed by Hibernate --------
+
+    public AmazonEchoShoppingList() {
+    }
+
+    // --------- Getters/Setters ---------
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public long getPullRequestId() {
+    public Long getPullRequestId() {
         return pullRequestId;
     }
 
-    public void setPullRequestId(long pullRequestId) {
+    public void setPullRequestId(Long pullRequestId) {
         this.pullRequestId = pullRequestId;
     }
 
@@ -53,6 +65,7 @@ public class AmazonEchoShoppingList {
     public void setShoppingListItem(String shoppingListItem) {
         this.shoppingListItem = shoppingListItem;
     }
+
     public String getComment() {
         return comment;
     }

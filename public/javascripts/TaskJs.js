@@ -2,7 +2,7 @@ var prevToggle;
 
 function CreateTask() {
     var contents = $("#create-task").val();
-    if(!contents) {
+    if (!contents) {
         return;
     }
     $.ajax({

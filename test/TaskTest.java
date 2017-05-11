@@ -1,25 +1,26 @@
+import static org.junit.Assert.assertTrue;
+
 import configs.TestAppConfig;
 import configs.TestDataConfig;
-import org.junit.Test;
-
-import static play.test.Helpers.fakeApplication;
-import static play.test.Helpers.running;
-import static org.junit.Assert.*;
 
 import models.Task;
+
+// import services.impl.TaskServiceImpl;
+import services.TaskService;
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import services.impl.TaskServiceImpl;
 
 @ContextConfiguration(classes = { TestAppConfig.class, TestDataConfig.class } )
 public class TaskTest extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
-    private TaskServiceImpl taskService;
+    private TaskService taskService;
 
     @Test
-    public void testNullTask() {
+    public void testNotNullTask() {
         Task t1 = new Task();
         t1.setTitle("Ah");
         taskService.saveTask(t1);

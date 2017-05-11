@@ -4,7 +4,7 @@ project/target
 target
 tmp
 .history
-.cache-tests
+/.cache-tests
 dist
 /.idea
 /*.iml

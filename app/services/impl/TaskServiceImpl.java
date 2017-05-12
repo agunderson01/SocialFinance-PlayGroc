@@ -33,7 +33,12 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public Task getTask(long id) {
         Task t = em.find(Task.class, id);
-        logger.info("Found task with id " + id + " and contents " + t.getTitle());
+        if (t !=null) {
+            logger.info("Found task with id " + id + " and contents " + t.getTitle());
+        }
+        else {
+            logger.info("No task found with id {}", id );
+        }
         return t;
     }
 

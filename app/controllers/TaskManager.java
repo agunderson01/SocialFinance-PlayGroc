@@ -31,7 +31,12 @@ public class TaskManager extends Controller {
 
     public Result getTask(String id) {
         Task t = taskService.getTask(id);
-        return ok(Json.toJson(t));
+        if ( t != null ) {
+            return ok(Json.toJson(t));
+        }
+        else {
+            return badRequest("No shopping item with id " + id + " found");
+        }
     }
 
     public boolean checkTaskExistsP (Task potentialNewTask) {

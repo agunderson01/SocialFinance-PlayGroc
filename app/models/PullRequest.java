@@ -1,5 +1,4 @@
 package models;
-import play.data.validation.Constraints.Required;
 
 import javax.persistence.*;
 
@@ -10,7 +9,6 @@ public class PullRequest {
     @Column(name = "id")
     private Long id;
 
-    @Required
     @Column(name = "max_pull_request_id")
     private Long maxPullRequestId;
 

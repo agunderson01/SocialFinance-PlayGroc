@@ -34,7 +34,7 @@ public class TaskTest extends AbstractTransactionalJUnit4SpringContextTests {
         t1.setTitle("Ah");
         taskService.saveTask(t1);
         Task t2 = taskService.getTask(t1.getId());
-        assertTrue("Saved title is not equal to savee title", t1.getTitle().equals(t2.getTitle()));
+        assertTrue("Saved title is equal to changed title", t1.getTitle().equals(t2.getTitle()));
     }
 
 }

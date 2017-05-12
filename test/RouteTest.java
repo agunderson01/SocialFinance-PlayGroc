@@ -9,7 +9,7 @@ import static org.junit.Assert.*;
 public class RouteTest extends WithApplication {
 
     @Test
-    public void testFooRoute() {
+    public void testTaskGETRoute() {
         Result result = route(fakeRequest(GET, "/task"));
         assertTrue(result != null);
     }

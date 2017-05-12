@@ -1,7 +1,5 @@
 package models;
 
-import play.data.validation.Constraints.Required;
-
 import javax.persistence.*;
 // import java.time.LocalDate;
 
@@ -12,15 +10,12 @@ public class AmazonEchoShoppingList {
     @Column(name = "id")
     private Long id;
 
-    @Required
     @Column(name = "pull_request_id")
     private Long pullRequestId;
 
-    @Required
     @Column(name = "username")
     private String userName;
 
-    @Required
     @Column(name = "shopping_list_item")
     private String shoppingListItem;
 

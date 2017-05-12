@@ -30,12 +30,14 @@ public class TaskServiceImpl implements TaskService {
         return results;
     }
 
+    @Override
     public Task getTask(long id) {
         Task t = em.find(Task.class, id);
         logger.info("Found task with id " + id + " and contents " + t.getTitle());
         return t;
     }
 
+    @Override
     public Task getTask(String id) {
         try {
             long id_l = Long.parseLong(id);
@@ -46,23 +48,39 @@ public class TaskServiceImpl implements TaskService {
         }
     }
 
+    @Override
+    public Task findTaskByTitle(String title) {
+        List<Task> tasks = getTasks();
+        for (Task t:tasks ) {
+            if (t.getTitle().equals(title)) {
+                return t;
+            }
+        }
+        // When not found, return the a null as the Task
+        return null;
+    }
+
+    @Override
     public void deleteAll() {
         int deletedCount = em.createQuery("DELETE FROM Task", Task.class).executeUpdate();
         logger.info("Deleted " + deletedCount + " tasks.");
     }
 
+    @Override
     @Transactional
     public void updateTask(Task task) {
         em.merge(task);
         logger.info("Updated task with id " + task.getId());
     }
 
+    @Override
     @Transactional
     public void deleteTask(Task task) {
         logger.info("Deleted task with id " + task.getId());
         em.remove(task);
     }
 
+    @Override
     @Transactional
     public void deleteTask(String id) {
         try {
@@ -72,11 +90,13 @@ public class TaskServiceImpl implements TaskService {
         } catch (NumberFormatException ignored) { }
     }
 
+    @Override
     public void deleteTask(long id) {
         Task t = getTask(id);
         deleteTask(t);
     }
 
+    @Override
     @Transactional
     public Task saveTask(Task task) {
         em.persist(task);

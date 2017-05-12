@@ -27,6 +27,13 @@ public interface TaskService {
     Task getTask(String id);
 
     /**
+     * Find if there is an existing task with this title
+     * @param title of task to look for
+     * @return The task that was found or null
+     */
+    Task findTaskByTitle(String title);
+
+    /**
      * Delete all tasks
      */
     void deleteAll();

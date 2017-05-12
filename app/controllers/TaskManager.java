@@ -34,6 +34,27 @@ public class TaskManager extends Controller {
         return ok(Json.toJson(t));
     }
 
+    public boolean checkTaskExistsP (Task potentialNewTask) {
+        List<Task> tasks = taskService.getTasks();
+        for (Task t:tasks ) {
+            if (t.getTitle().equals(potentialNewTask.getTitle())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public Result findTaskByTitle(String title) {
+        Task t = taskService.findTaskByTitle(title);
+        if ( t != null ) {
+            return ok(Json.toJson(t));
+        }
+        else {
+            return badRequest("No shopping item with title " + title + " found");
+        }
+
+    }
+
     public Result createTask() {
         Form<Task> form = Form.form(Task.class).bindFromRequest();
         if (form.hasErrors()) {
@@ -45,9 +66,19 @@ public class TaskManager extends Controller {
         }
 
         Task task = form.get();
-        task = taskService.saveTask(task);
-        logger.info("New task returned with id {}", task.getId());
-        return ok(Json.toJson(task.getId()));
+
+        // Get any cruft off the data
+        task.setTitle(task.getTitle().trim());
+
+        if ( checkTaskExistsP(task) ) {
+            logger.info("No need to enter duplicate item {} on shopping list", task.getTitle());
+            return badRequest("No need to save duplicate shopping item " + task.getTitle());
+        }
+        else {
+            task = taskService.saveTask(task);
+            logger.info("New task returned with id {}", task.getId());
+            return ok(Json.toJson(task.getId()));
+        }
     }
 
     public Result editTask(String id) {

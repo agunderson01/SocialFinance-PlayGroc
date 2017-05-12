@@ -9,6 +9,8 @@ GET     /task                       @controllers.TaskManager.getTasks()
 
 GET     /task/:id                   @controllers.TaskManager.getTask(id)
 
+GET    /findTaskByTitle/:title      @controllers.TaskManager.findTaskByTitle(title)
+
 POST    /task                       @controllers.TaskManager.createTask()
 
 PUT     /task/:id                   @controllers.TaskManager.editTask(id)

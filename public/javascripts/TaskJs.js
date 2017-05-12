@@ -2,13 +2,29 @@ var prevToggle;
 
 function CreateTask() {
     var contents = $("#create-task").val();
+    var trimmedContents = $.trim(contents);
+    if (trimmedContents == "") {
+      alert ("Empty shopping items not allowed");
+      $("#create-task").val("");
+      return false;
+    }
     if (contents == "") {
-        alert ("Enter a valid shopping item");
+        alert("Enter a valid shopping item");
+        $("#create-task").val("");
         return false;
     }
     if (!contents) {
         return;
     }
+    contents = trimmedContents;
+    $.ajax({
+      type: "GET",
+      url: "/findTaskByTitle/" + contents
+    }).done(function(title) {
+      alert("That item is already on shopping list");
+      // Clear input
+      $("#create-task").val("");
+    });
     $.ajax({
         type: "POST",
         url: "/task",

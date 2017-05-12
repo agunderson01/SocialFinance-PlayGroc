@@ -1,4 +1,11 @@
-Simple Todo App
-===============
+Simple Grocery Store Shopping List App
+======================================
 
-Using json endpoints, we implement a todo application using json and jquery.
+In the Play MVC framework and using Json endpoints, this implements a grocery store shopping list
+application.  This uses Json, JavaScript, JQuery, and Hibernate.
+
+Based off of the SocialFinances/PlayTodo app
+
+This will evolve to pull in your shopping list from your Amazon Echo/Alexa.
+
+This is a toy application done as a SoFi homework exercise.

@@ -44,6 +44,7 @@ public class TaskTest extends AbstractTransactionalJUnit4SpringContextTests {
         assertFalse(taskService.saveTask(t)==null);
     }
 
+    // ASG 5/12/2017 Test the service I added to assist with avoiding entry of duplicate shopping items
     @Test
     public void testFindTaskByTitle() {
         Task t1 = new Task();

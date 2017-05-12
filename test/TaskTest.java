@@ -1,3 +1,4 @@
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import configs.TestAppConfig;
@@ -35,6 +36,32 @@ public class TaskTest extends AbstractTransactionalJUnit4SpringContextTests {
         taskService.saveTask(t1);
         Task t2 = taskService.getTask(t1.getId());
         assertTrue("Saved title is equal to changed title", t1.getTitle().equals(t2.getTitle()));
+    }
+
+    @Test
+    public void addEmptyTask() {
+        Task t = new Task();
+        assertFalse(taskService.saveTask(t)==null);
+    }
+
+    @Test
+    public void testFindTaskByTitle() {
+        Task t1 = new Task();
+        t1.setTitle("Ah");
+        taskService.saveTask(t1);
+        Task t2 = taskService.findTaskByTitle(t1.getTitle());
+        assertTrue("We found the Task we saved by the title", t1.getTitle().equals(t2.getTitle()));
+    }
+
+    @Test
+    public void testDeleteTask() {
+        Task t1 = new Task();
+        t1.setTitle("Ah");
+        taskService.saveTask(t1);
+        Task t2 = taskService.getTask(t1.getId());
+        taskService.deleteTask(t2.getId());
+        Task t3 = taskService.getTask(t2.getId());
+        assertTrue("The deleted task should not be found", t3==null);
     }
 }
 

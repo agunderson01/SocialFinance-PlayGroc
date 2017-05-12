@@ -2,6 +2,10 @@ var prevToggle;
 
 function CreateTask() {
     var contents = $("#create-task").val();
+    if (contents == "") {
+        alert ("Enter a valid shopping item");
+        return false;
+    }
     if (!contents) {
         return;
     }

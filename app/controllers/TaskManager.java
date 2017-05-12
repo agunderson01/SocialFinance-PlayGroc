@@ -20,6 +20,10 @@ public class TaskManager extends Controller {
     @Autowired
     private TaskService taskService;
 
+    public TaskService getTaskService() {
+        return taskService;
+    }
+
     public Result getTasks() {
         List<Task> t = taskService.getTasks();
         return ok(Json.toJson(t));
@@ -33,7 +37,11 @@ public class TaskManager extends Controller {
     public Result createTask() {
         Form<Task> form = Form.form(Task.class).bindFromRequest();
         if (form.hasErrors()) {
-            return badRequest();
+            // List<Task> tasks = getTaskService().getTasks();
+            // return badRequest();
+            // return badRequest(index.render("Your Groc List", form, tasks));
+            logger.info("Error creating a task-probably nothing entered");
+            return badRequest("Nothing entered");
         }
 
         Task task = form.get();

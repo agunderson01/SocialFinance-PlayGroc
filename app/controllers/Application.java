@@ -19,6 +19,6 @@ public class Application extends Controller {
 
     public Result index() {
         List<Task> tasks = taskService.getTasks();
-        return ok(index.render("Task Manager", Form.form(Task.class), tasks));
+        return ok(index.render("Your Groc List", Form.form(Task.class), tasks));
     }
 }

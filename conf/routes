@@ -6,9 +6,13 @@
 GET     /                           @controllers.Application.index()
 
 GET     /task                       @controllers.TaskManager.getTasks()
+
 GET     /task/:id                   @controllers.TaskManager.getTask(id)
+
 POST    /task                       @controllers.TaskManager.createTask()
+
 PUT     /task/:id                   @controllers.TaskManager.editTask(id)
+
 DELETE  /task                       @controllers.TaskManager.removeTasks()
 DELETE  /task/:id                   @controllers.TaskManager.removeTask(id)
 
